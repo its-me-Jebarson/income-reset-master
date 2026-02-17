@@ -1,6 +1,7 @@
 import { Clock, AlertTriangle, ChevronRight, CheckCircle2, DollarSign } from "lucide-react";
 import type { Order } from "@/hooks/useOrders";
 import { foodImages } from "@/data/menuData";
+import { useSound } from "@/hooks/useSound";
 
 interface OrderCardProps {
   order: Order;
@@ -26,13 +27,20 @@ const actionLabels: Record<string, string> = {
 
 export function OrderCard({ order, onAdvance, onComplete, onToggleItem }: OrderCardProps) {
   const config = statusConfig[order.status];
+  const { playClick } = useSound();
 
   const handleAction = () => {
+    playClick();
     if (order.status === "ready") {
       onComplete(order.id);
     } else {
       onAdvance(order.id);
     }
+  };
+
+  const handleToggle = (itemId: string) => {
+    playClick();
+    onToggleItem(order.id, itemId);
   };
 
   const location = order.table
@@ -74,7 +82,7 @@ export function OrderCard({ order, onAdvance, onComplete, onToggleItem }: OrderC
             <div key={item.id} className="flex items-start justify-between gap-2">
               <div className="flex items-start gap-2.5">
                 <button
-                  onClick={() => onToggleItem(order.id, item.id)}
+                  onClick={() => handleToggle(item.id)}
                   className={`mt-0.5 h-5 w-5 rounded-md border-2 transition-colors flex-shrink-0 flex items-center justify-center ${
                     item.completed ? "border-kds-ready bg-kds-ready/20" : "border-muted-foreground/30 hover:border-accent"
                   }`}

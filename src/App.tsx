@@ -4,7 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@/hooks/useTheme";
-import { SoundProvider } from "@/hooks/useSound";
+import { SoundProvider, useSound } from "@/hooks/useSound";
 import { OrdersProvider } from "@/contexts/OrdersContext";
 import Index from "./pages/Index";
 import MenuPage from "./pages/Menu";
@@ -15,11 +15,16 @@ import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
+function OrdersWithSound({ children }: { children: React.ReactNode }) {
+  const { playNewOrder } = useSound();
+  return <OrdersProvider onNewOrder={playNewOrder}>{children}</OrdersProvider>;
+}
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <ThemeProvider>
       <SoundProvider>
-        <OrdersProvider>
+        <OrdersWithSound>
           <TooltipProvider>
             <Toaster />
             <Sonner />
@@ -34,7 +39,7 @@ const App = () => (
               </Routes>
             </BrowserRouter>
           </TooltipProvider>
-        </OrdersProvider>
+        </OrdersWithSound>
       </SoundProvider>
     </ThemeProvider>
   </QueryClientProvider>

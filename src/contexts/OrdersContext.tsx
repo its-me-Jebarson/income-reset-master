@@ -96,11 +96,13 @@ interface OrdersContextValue {
 
 const OrdersContext = createContext<OrdersContextValue | null>(null);
 
-export function OrdersProvider({ children }: { children: ReactNode }) {
+export function OrdersProvider({ children, onNewOrder }: { children: ReactNode; onNewOrder?: () => void }) {
   const [orders, setOrders] = useState<Order[]>(initialOrders);
   const [completedCount, setCompletedCount] = useState(0);
   const [totalIncome, setTotalIncome] = useState(0);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const onNewOrderRef = useRef(onNewOrder);
+  onNewOrderRef.current = onNewOrder;
 
   // Auto-generate orders every 5–10 seconds
   useEffect(() => {
@@ -108,6 +110,7 @@ export function OrdersProvider({ children }: { children: ReactNode }) {
       const delay = randomInt(5000, 10000);
       timerRef.current = setTimeout(() => {
         setOrders(prev => [...prev, generateOrder()]);
+        onNewOrderRef.current?.();
         scheduleNext();
       }, delay);
     }
