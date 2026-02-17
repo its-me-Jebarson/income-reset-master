@@ -13,10 +13,10 @@ interface StatsBarProps {
 }
 
 const StatCard = ({ icon: Icon, value, label, color }: { icon: any; value: string; label: string; color: string }) => (
-  <div className="flex flex-col items-center gap-1 rounded-lg bg-kds-stat-bg px-4 py-3 min-w-[120px]">
-    <Icon className={`h-4 w-4 ${color}`} />
-    <span className="font-mono text-xl font-bold text-foreground">{value}</span>
-    <span className="text-xs text-muted-foreground">{label}</span>
+  <div className="flex flex-col items-center gap-1.5 rounded-xl bg-kds-stat-bg border border-border/50 px-5 py-4 min-w-[130px] transition-all hover:shadow-glow-accent hover:border-accent/30">
+    <Icon className={`h-5 w-5 ${color}`} />
+    <span className="font-mono text-2xl font-bold text-foreground">{value}</span>
+    <span className="text-xs text-muted-foreground font-medium">{label}</span>
   </div>
 );
 

@@ -46,12 +46,12 @@ const Index = () => {
               placeholder="Search orders..."
               value={search}
               onChange={e => setSearch(e.target.value)}
-              className="rounded-lg border border-border bg-secondary pl-9 pr-4 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring w-[200px]"
+              className="rounded-xl border border-border bg-secondary pl-9 pr-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring/50 w-[220px] transition-all"
             />
           </div>
         </div>
 
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {filteredOrders.map(order => (
             <OrderCard
               key={order.id}
