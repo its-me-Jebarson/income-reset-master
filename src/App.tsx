@@ -10,6 +10,7 @@ import Index from "./pages/Index";
 import MenuPage from "./pages/Menu";
 import AnalyticsPage from "./pages/Analytics";
 import OrderHistoryPage from "./pages/OrderHistory";
+import ApiManagementPage from "./pages/ApiManagement";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -28,6 +29,7 @@ const App = () => (
                 <Route path="/menu" element={<MenuPage />} />
                 <Route path="/analytics" element={<AnalyticsPage />} />
                 <Route path="/history" element={<OrderHistoryPage />} />
+                <Route path="/api" element={<ApiManagementPage />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </BrowserRouter>
