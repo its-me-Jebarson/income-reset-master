@@ -1,4 +1,4 @@
-import { ChefHat, Volume2, VolumeX, Sun, Moon, BarChart3, UtensilsCrossed, History } from "lucide-react";
+import { ChefHat, Volume2, VolumeX, Sun, Moon, BarChart3, UtensilsCrossed, History, Key } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useTheme } from "@/hooks/useTheme";
 import { useSound } from "@/hooks/useSound";
@@ -53,6 +53,12 @@ export function KDSHeader() {
           className="flex items-center gap-1 rounded-full border border-border px-3 py-1.5 text-sm text-foreground hover:bg-accent transition-colors"
         >
           <BarChart3 className="h-4 w-4" /> Analytics
+        </button>
+        <button
+          onClick={() => navigate("/api")}
+          className="flex items-center gap-1 rounded-full border border-border px-3 py-1.5 text-sm text-foreground hover:bg-accent transition-colors"
+        >
+          <Key className="h-4 w-4" /> API
         </button>
       </div>
     </header>
