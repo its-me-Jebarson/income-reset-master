@@ -1,3 +1,3 @@
 // API Configuration
-// This key is used for project API access
-export const API_KEY = "I1yhhaObTL1djIQ5WWVC43EfKArEqalaaTzte8yI";
+// This key is read from environment variables (VITE_ prefix exposes it to the client)
+export const API_KEY = import.meta.env.VITE_API_KEY ?? "";
